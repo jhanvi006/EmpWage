@@ -12,18 +12,21 @@ public class EmpWageBuilder {
 
 //      Generate random number to check emp presence
         Random random = new Random();
-        int isPartTime = 1;
-        int isFullTime = 2;
+        final int IS_PART_TIME = 1;
+        final int IS_FULL_TIME = 2;
         int checkPresence = random.nextInt(3);
         int workingHour, dailyWage;
 
 //      Check Presence
-        if (checkPresence == isPartTime)
-            workingHour = HALF_DAY_HOUR;
-        else if (checkPresence == isFullTime)
-            workingHour = FULL_DAY_HOUR;
-        else
-            workingHour = 0;
+        switch (checkPresence){
+            case IS_PART_TIME:
+                workingHour = HALF_DAY_HOUR;
+                break;
+            case IS_FULL_TIME:
+                workingHour = FULL_DAY_HOUR;
+                break;
+            default: workingHour = 0;
+        }
 
         dailyWage = workingHour*WAGE_PR_HOUR; /* Possible outputs 0, 80, 160 */
         System.out.println("Daily wage is "+dailyWage);

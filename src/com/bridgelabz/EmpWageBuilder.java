@@ -16,10 +16,10 @@ public class EmpWageBuilder {
         final int IS_PART_TIME = 1;
         final int IS_FULL_TIME = 2;
         int startDay = 1;
-        int workingHour=0, wage=0, checkPresence;
+        int workingHour=0, wage=0, checkPresence, totalWorkingHr=0;
 
         /* Calculate for whole month */
-        while (startDay <= WORKING_DAY_PR_MONTH) {
+        while (startDay <= WORKING_DAY_PR_MONTH && totalWorkingHr<=100) {
             checkPresence = random.nextInt(3);
             /* Check Presence */
             switch (checkPresence) {
@@ -34,8 +34,10 @@ public class EmpWageBuilder {
             }
 
             wage += workingHour * WAGE_PR_HOUR;
+            totalWorkingHr+=workingHour;
             startDay++;
         }
+        System.out.println("Working hours: "+totalWorkingHr);
         System.out.println("Monthly wage is " + wage);
     }
 }

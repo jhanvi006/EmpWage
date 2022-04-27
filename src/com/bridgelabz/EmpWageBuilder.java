@@ -8,7 +8,7 @@ class WageCalculation{
     public final int IS_PART_TIME = 1;
     public final int IS_FULL_TIME = 2;
     int startDay = 1;
-    int workingHour=0, wage=0, checkPresence, totalWorkingHr=0;
+    int workingHour=0, wage=0, checkPresence, totalWorkingHr=0, totalWorkingDay=0;
     public void calculateMonthlyWage(int wagePrHour, int workingDays, int workingHrsPrMonth, String companyName){
         /* Calculate for whole month */
         while (startDay <= workingDays && totalWorkingHr<=workingHrsPrMonth) {
@@ -17,9 +17,11 @@ class WageCalculation{
             switch (checkPresence) {
                 case IS_PART_TIME:
                     workingHour = HALF_DAY_HOUR;
+                    totalWorkingDay++;
                     break;
                 case IS_FULL_TIME:
                     workingHour = FULL_DAY_HOUR;
+                    totalWorkingDay++;
                     break;
                 default:
                     workingHour = 0;
@@ -28,8 +30,8 @@ class WageCalculation{
             totalWorkingHr+=workingHour;
             startDay++;
         }
-        System.out.println("Total working hours for "+companyName+" company: "+totalWorkingHr);
-        System.out.println("Monthly wage of employee at "+companyName+" company is " + wage);
+        System.out.println("Total working hours for "+companyName+" company "+totalWorkingHr+" and total working days are "+totalWorkingDay);
+        System.out.println("Total wage of "+companyName+" company is " + wage);
     }
 }
 public class EmpWageBuilder {
